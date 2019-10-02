@@ -1,7 +1,7 @@
 <template>
   <div class="form-inline">
 <div class="form-group">
-  <h3>Sign In</h3>
+  <h3>Sign up</h3>
   <input
   type="text"
   placeholder="email"
@@ -16,22 +16,20 @@
   />
   <br>
   <br>
-  <button class="btn btn-primary" @click="signIn">Sign In</button>
+  <button class="btn btn-primary" @click="signUp">Sign Up</button>
 </div>
 <br>
 <br>
-<router-link to="/signup">Not a user? Sign up</router-link>
+<router-link to="/signin">Already a user? Sign In</router-link>
 <br>
 <br>
 <p>{{error.message}}</p>
-<br>
 </div>
 </template>
 <script>
 import { firebaseApp } from '../firebaseApp'
 
 export default {
-  name: "",
   data() {
 return {
   email:'',
@@ -42,8 +40,8 @@ return {
 }
 },
 methods:{
-  signIn(){
-    firebaseApp.auth().signInWithEmailAndPassword(this.email, this.password)
+  signUp(){
+    firebaseApp.auth().createUserWithEmailAndPassword(this.email, this.password)
 .catch(error => {
   this.error = error
 })
